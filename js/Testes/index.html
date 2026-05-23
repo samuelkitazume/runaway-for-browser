@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Testes</title>
+
+<script type="text/javascript">
+
+var contador=-1;
+var vetor = [];
+
+function data2(primeironome,segundonome){
+	this.primeironome = primeironome;
+	this.segundonome = segundonome;
+}
+
+function data(nome,idade){
+		this.nome = nome;
+		this.idade = idade;
+	}
+
+var nomeinteiro = new data2('Samuel','Jun');
+
+function teste(){
+	contador++;
+	vetor[contador] = new data(nomeinteiro,22);
+}
+function show(){
+	alert(Math.floor(Math.random()*3)+1);
+	}
+
+
+</script>
+
+</head>
+
+<body>
+<a href="#" onclick="teste();">TESTE</a>
+<a href="#" onclick="show();">TESTE2</a>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Runaway for browser</title>
+
+<script type="text/javascript" src="js/funcoes.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" /> 
+
+</head>
+
+<body>
+
+    <div id="container">
+        <div id="topo"></div>
+    
+        <div id="meio">
+        
+            <div id="statusplayer1">
+            	<ul>
+                	<li>Life: <span id="lifeplayer1"></span></li>
+                    <li>Mana: <span id="manaplayer1"></span></li>
+                </ul>
+            </div>
+            
+            <div id="cenario">
+            	<div id="player1"></div>
+                <div id="player2"></div>
+                <div id="hits"></div>
+            </div>
+            
+            <div id="statusplayer2">
+	            <ul>
+                	<li>Life: <span id="lifeplayer2"></span></li>
+                    <li>Mana: <span id="manaplayer2"></span></li>
+                </ul>
+            </div>
+        
+        </div>
+    
+        <div id="rodape"></div>
+    </div>
+    
+    <audio id='somFire' controls="controls" style="display:none;">
+      <source src="somFire.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    
+    <audio id='somPunch' controls="controls" style="display:none;">
+      <source src="somPunch.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    
+    <script type="text/javascript">	
+	var jogador1 = new Player('player1','guerreiro');
+	var jogador2 = new Player('player2','guerreiro');
+	randomMapFire(100);
+	</script>
+    
+</body>
+</html>

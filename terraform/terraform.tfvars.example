@@ -1,6 +1,13 @@
 # Copy this file to terraform.tfvars and fill in your values.
 # terraform.tfvars is git-ignored — these values stay on your machine.
 
+# Optional: Cloudflare API token.
+#   - Uncomment this line and paste your token here to keep all setup in one file.
+#   - Or leave it commented and export CLOUDFLARE_API_TOKEN as an env var instead.
+# Either works — see terraform/README.md for the tradeoffs (the tfvars path
+# means the token ends up in terraform.tfstate too).
+# cloudflare_api_token = "REPLACE_ME"
+
 # Find these in the Cloudflare dashboard:
 #   - Account ID: Dashboard → click any zone → right sidebar, "Account ID"
 #   - Zone ID:    same page, right sidebar, "Zone ID"

@@ -1,3 +1,17 @@
+variable "cloudflare_api_token" {
+  description = <<-EOT
+    Cloudflare API token used by the provider. Optional in this config:
+      - If set (e.g. in terraform.tfvars), Terraform passes it to the provider directly.
+      - If null/omitted, the provider falls back to the CLOUDFLARE_API_TOKEN env var.
+    SENSITIVE — never commit a value for this. terraform.tfvars is git-ignored.
+    Note: if you put the token in tfvars, it will also live in terraform.tfstate.
+  EOT
+  type        = string
+  sensitive   = true
+  nullable    = true
+  default     = null
+}
+
 variable "cloudflare_account_id" {
   description = "Your Cloudflare account ID (Dashboard → right sidebar on any zone overview page)."
   type        = string

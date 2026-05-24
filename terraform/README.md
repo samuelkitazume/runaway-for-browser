@@ -16,8 +16,8 @@ This is intentionally a small Terraform footprint — five resources across thre
 
 ### Tools
 
-- **Terraform ≥ 1.5** — `winget install Hashicorp.Terraform` (Windows), `brew install terraform` (macOS), or download from [terraform.io/downloads](https://www.terraform.io/downloads).
-- **Node.js** (for `wrangler`, the Cloudflare Pages CLI). Any LTS version works.
+- **Terraform ≥ 1.5** — `winget install Hashicorp.Terraform` (Windows), `brew install terraform` (macOS), or download from [terraform.io/downloads](https://www.terraform.io/downloads). The binary is shell-agnostic — git bash, PowerShell, cmd, zsh all work.
+- **Node.js — any LTS** (for `wrangler`, the Cloudflare Pages CLI). Install via whatever you already use: `nvm install --lts && nvm use --lts`, `winget install OpenJS.NodeJS.LTS`, `brew install node`, or the [installer](https://nodejs.org/). `npx wrangler` works from any shell.
 - A Cloudflare account with the target zone already added (your domain's nameservers pointed at Cloudflare's).
 
 ### Cloudflare values to collect
@@ -47,25 +47,48 @@ Save the token somewhere safe — Cloudflare only shows it once.
 
 ## First-time setup
 
-### 1. Set the API token as an environment variable
+### 1. Give Terraform your API token
 
-The Cloudflare provider reads `CLOUDFLARE_API_TOKEN` automatically. Do **not** put the token in a `.tf` or `.tfvars` file.
+Pick one of two paths — both are supported by this config. The provider receives the token from `var.cloudflare_api_token` when it's set, and otherwise falls back to the `CLOUDFLARE_API_TOKEN` env var.
 
-**PowerShell (current session only):**
+#### Option A — put it in `terraform.tfvars` (simpler for a solo project)
+
+Uncomment the `cloudflare_api_token` line in your `terraform.tfvars` and paste the token:
+
+```hcl
+cloudflare_api_token = "your-token-here"
+```
+
+`terraform.tfvars` is git-ignored — the token cannot land in a commit unless you `git add -f` it. The variable is marked `sensitive` so Terraform redacts it from plan and apply output.
+
+Tradeoff: the token also ends up in `terraform.tfstate`. If you ever share or back up that file, treat it like the token itself.
+
+#### Option B — export it as an env var (more conventional for credentials)
+
+Leave the `cloudflare_api_token` line commented out in `terraform.tfvars` and put the token in your shell environment instead:
+
+**git bash / bash / zsh — current session:**
+```bash
+export CLOUDFLARE_API_TOKEN="your-token-here"
+```
+
+**git bash / bash / zsh — persisted (add to `~/.bashrc` or `~/.zshrc`):**
+```bash
+echo 'export CLOUDFLARE_API_TOKEN="your-token-here"' >> ~/.bashrc
+```
+
+**PowerShell — current session:**
 ```powershell
 $env:CLOUDFLARE_API_TOKEN = "your-token-here"
 ```
 
-**PowerShell (persisted to your user profile):**
+**PowerShell — persisted to your Windows user profile:**
 ```powershell
 [Environment]::SetEnvironmentVariable("CLOUDFLARE_API_TOKEN", "your-token-here", "User")
 # then close and reopen your shell
 ```
 
-**bash / zsh:**
-```bash
-export CLOUDFLARE_API_TOKEN="your-token-here"
-```
+The env-var approach keeps the token out of the project folder and out of `terraform.tfstate`.
 
 ### 2. Fill in your variables
 

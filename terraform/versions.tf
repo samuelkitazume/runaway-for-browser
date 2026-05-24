@@ -13,6 +13,11 @@ terraform {
 }
 
 provider "cloudflare" {
-  # API token is read from the CLOUDFLARE_API_TOKEN environment variable.
-  # Do NOT put the token in any .tf or .tfvars file. See terraform/README.md.
+  # Token can come from either:
+  #   1. var.cloudflare_api_token  (set in terraform.tfvars — file is git-ignored)
+  #   2. CLOUDFLARE_API_TOKEN env var  (when the variable is null/unset)
+  # When var.cloudflare_api_token is null, this argument is effectively absent
+  # and the provider falls back to its standard env-var lookup. See
+  # terraform/README.md for the tradeoffs between the two approaches.
+  api_token = var.cloudflare_api_token
 }

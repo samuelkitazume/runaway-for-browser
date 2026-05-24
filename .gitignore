@@ -13,5 +13,24 @@ desktop.ini
 # Logs
 *.log
 
-# Node (in case anything gets added later)
+# Node (arrives in Phase 2)
 node_modules/
+dist/
+
+# Generated artifacts (built from /legacy by scripts/build-legacy-zip.mjs)
+public/downloads/runaway-2011-original.zip
+
+# Terraform (see terraform/.gitignore for the authoritative list,
+# duplicated here so accidental top-level files are also ignored)
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform/
+.terraform.lock.hcl
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json

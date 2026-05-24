@@ -1,0 +1,20 @@
+# Copy this file to terraform.tfvars and fill in your values.
+# terraform.tfvars is git-ignored — these values stay on your machine.
+
+# Find these in the Cloudflare dashboard:
+#   - Account ID: Dashboard → click any zone → right sidebar, "Account ID"
+#   - Zone ID:    same page, right sidebar, "Zone ID"
+cloudflare_account_id = "REPLACE_ME"
+cloudflare_zone_id    = "REPLACE_ME"
+
+# The apex domain you've added to Cloudflare (no protocol, no trailing dot).
+zone_name = "example.com"
+
+# The subdomain to serve the game from. The site will live at
+# <subdomain>.<zone_name> — e.g. with subdomain="runaway" and
+# zone_name="example.com", the site is https://runaway.example.com.
+subdomain = "runaway"
+
+# Optional — defaults to "runaway-for-browser". Must be a valid DNS label
+# (lowercase, hyphens). Becomes <project_name>.pages.dev.
+# project_name = "runaway-for-browser"

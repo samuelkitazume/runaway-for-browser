@@ -1,0 +1,27 @@
+# Terraform state (contains resource IDs and may contain secrets)
+*.tfstate
+*.tfstate.*
+
+# Local variable files (keep your account ID, zone ID, etc. on your machine)
+*.tfvars
+*.tfvars.json
+# ...but DO commit the example file so collaborators know the shape
+!*.tfvars.example
+
+# Provider plugins and modules
+.terraform/
+.terraform.lock.hcl
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Plan output (sometimes saved with `terraform plan -out=tfplan`)
+tfplan
+*.tfplan
